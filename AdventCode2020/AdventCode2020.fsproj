@@ -8,9 +8,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="part1.fsx" />
         <Compile Include="Program.fs" />
-        <Content Include="input.txt" />
+        <Content Include="day1\input.txt" />
+        <None Include="day1\part1.fsx" />
     </ItemGroup>
 
     <ItemGroup>
