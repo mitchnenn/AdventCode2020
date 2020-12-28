@@ -30,12 +30,11 @@ let elementAt (forest:Forest) (x,y) =
         let row = forest.[y]
         Some row.[x % row.Length]
 
-type State = {location:(int*int);slope:int*int;visited:Space list}
+type State = {location:(int*int);visited:Space list}
 
-let moveSpace (forest:Forest) (state:State) =
+let moveSpace (forest:Forest) (m:int*int) (state:State) =
     let (x,y) = state.location
-    let (run,rise) = state.slope
-    let newLocation = (x+run,y+rise)
+    let newLocation = (x+fst m,y+snd m)
     let element = elementAt forest newLocation
     match element with
     | None -> None
@@ -45,7 +44,7 @@ let moveSpace (forest:Forest) (state:State) =
 
 let getVisitedWithTrees (m:int*int) =
     let (x,y) = m
-    let endState = Seq.unfold (moveSpace forest) {location=(0,0);slope=(x,y);visited=[]}
+    let endState = Seq.unfold (moveSpace forest m) {location=(0,0);visited=[]}
                    |> Seq.last
     endState.visited
     |> List.filter(function | Tree -> true | _ -> false)
