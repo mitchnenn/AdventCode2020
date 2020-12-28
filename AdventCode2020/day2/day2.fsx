@@ -18,13 +18,23 @@ let parsed =
     |> Seq.toList
 
 let isValidPassword (policyPassword:PolicyPassword) =
+    let occurrences = policyPassword.password
+                      |> Seq.filter (fun c -> c = policyPassword.character)
+                      |> Seq.length
+    occurrences >= policyPassword.pos1 && occurrences <= policyPassword.pos2                          
+
+parsed
+|> List.filter (isValidPassword)
+|> List.length
+
+let isValidPassword2 (policyPassword:PolicyPassword) =
     let at1 = policyPassword.password.[policyPassword.pos1 - 1]
     let at2 = policyPassword.password.[policyPassword.pos2 - 1]
     (at1 = policyPassword.character && at2 <> policyPassword.character)
         || (at1 <> policyPassword.character && at2 = policyPassword.character)
 
 parsed
-|> List.filter (isValidPassword)
+|> List.filter (isValidPassword2)
 |> List.length
 
 printf "Testing..."
