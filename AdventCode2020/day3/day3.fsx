@@ -36,14 +36,12 @@ let moveSpace (forest:Forest) (m:int*int) (state:State) =
     let (x,y) = state.location
     let newLocation = (x+fst m,y+snd m)
     let element = elementAt forest newLocation
-    match element with
-    | None -> None
-    | Some el ->
+    element
+    |> Option.map(fun el -> 
         let next = { state with location = newLocation; visited = el::state.visited }
-        Some (next, next)
+        next, next)
 
 let getVisitedWithTrees (m:int*int) =
-    let (x,y) = m
     let endState = Seq.unfold (moveSpace forest m) {location=(0,0);visited=[]}
                    |> Seq.last
     endState.visited
