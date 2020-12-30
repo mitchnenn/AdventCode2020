@@ -18,6 +18,8 @@
         <Content Include="day2\input.txt" />
         <None Include="day3\day3.fsx" />
         <Content Include="day3\input.txt" />
+        <None Include="day4\day4-part1.fsx" />
+        <Content Include="day4\input.txt" />
     </ItemGroup>
 
     <ItemGroup>

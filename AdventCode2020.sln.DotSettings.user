@@ -5,5 +5,8 @@
     &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.ParsingTests.FsUnit test&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.ParsingTests+ParsingTestsType.FsUnit test&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.ParsingTests+ParsingTestsType.Parse min max&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.ParsingTests+ParsingTestsType.Parse passports test&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.ParsingTests+ParsingTestsType.Field Parser Test&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.ParsingTests+ParsingTestsType&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
