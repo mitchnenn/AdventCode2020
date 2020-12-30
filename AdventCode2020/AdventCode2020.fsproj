@@ -11,6 +11,7 @@
         <Compile Include="FParsecHelper.fs" />
         <Compile Include="TryItTests.fs" />
         <Compile Include="ParsingTests.fs" />
+        <Compile Include="BoardingPassTests.fs" />
         <Compile Include="Program.fs" />
         <Content Include="day1\input.txt" />
         <None Include="day1\part1Andpart2.fsx" />
@@ -20,6 +21,7 @@
         <Content Include="day3\input.txt" />
         <None Include="day4\day4-part1.fsx" />
         <Content Include="day4\input.txt" />
+        <Content Include="day5\input.txt" />
     </ItemGroup>
 
     <ItemGroup>

@@ -8,5 +8,10 @@
     &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.ParsingTests+ParsingTestsType.Parse passports test&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.ParsingTests+ParsingTestsType.Field Parser Test&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.ParsingTests+ParsingTestsType&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.BoardingPassTests+BoardingPassTestsType.Parse boarding pass seat location test&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.BoardingPassTests+BoardingPassTestsType.Parse boarding pass seat location&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.BoardingPassTests+BoardingPassTestsType.Parse boarding pass row location&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.BoardingPassTests+BoardingPassTestsType.Parse seat location test&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.BoardingPassTests+BoardingPassTestsType.Get highest seat index&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

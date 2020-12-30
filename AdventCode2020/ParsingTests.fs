@@ -8,7 +8,7 @@ open Xunit.Abstractions
 open FsUnit.Xunit
 
 type KVP = {key:string; value:string}
-type KVPRegex = Regex < @"^(?<Key>.*):(?<Value>.*)$" >
+type KVPRegex = Regex< @"^(?<Key>.*):(?<Value>.*)$" >
 
 module ParsingTests =
     type ParsingTestsType(output:ITestOutputHelper) =
