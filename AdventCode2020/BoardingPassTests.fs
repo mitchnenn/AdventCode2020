@@ -103,12 +103,25 @@ module BoardingPassTests =
             let (_,_,s) = t
             s
         
+        let getAllBoardingPasses = 
+            File.ReadAllLines(path)
+            |> Seq.map(parseBoardingPassLocation)
+            |> Seq.sortBy(third)
+            |> Seq.toList
+        
         [<Fact>]
         let ``Get highest seat index`` () =
-            let allBoardingPasses = File.ReadAllLines(path) |> Seq.toList
-            let parsedBoardingPasses = allBoardingPasses
-                                       |> List.map(parseBoardingPassLocation)
-            parsedBoardingPasses
-            |> List.sortBy(third)
-            |> List.rev
-            |> List.iter(fun i -> output.WriteLine($"{i}"))                                       
+            let (_,_,highestSeatId) = getAllBoardingPasses
+                                      |> List.rev
+                                      |> List.head
+            highestSeatId |> should equal 911
+            
+        [<Fact>]
+        let ``Missing seat test`` () =
+            let seatIds = getAllBoardingPasses
+                          |> List.map(third)
+            let missingSeatIds = [(seatIds |> List.head)..(seatIds |> List.last)]
+                                 |> List.except seatIds
+            missingSeatIds |> List.length |> should equal 1
+            missingSeatIds |> List.head |> should equal 629
+            
