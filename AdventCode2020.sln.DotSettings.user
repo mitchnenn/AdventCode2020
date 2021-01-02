@@ -14,5 +14,11 @@
     &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.BoardingPassTests+BoardingPassTestsType.Parse seat location test&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.BoardingPassTests+BoardingPassTestsType.Get highest seat index&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.BoardingPassTests+BoardingPassTestsType.Missing seat test&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.CustomsTests+CustomsTestsType.FsUnit Tests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.CustomsTests+CustomsTestsType.Parse groups test&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.CustomsTests+CustomsTestsType.Count yes votes per group and sum.&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.CustomsTests+CustomsTestsType.Test sum yes questions for a group&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.CustomsTests+CustomsTestsType.Test sum yes questions a couple of groups&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D06D9F84-1C50-4AFF-B250-08A9CDA21E39::net5.0::AdventCode2020.CustomsTests+CustomsTestsType.Sum yes votes by group&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
