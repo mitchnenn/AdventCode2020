@@ -7,21 +7,17 @@ open FsUnit.Xunit
 
 module BoardingPassTests =
     type BoardingPassTestsType(output:ITestOutputHelper) =
-        let rowInputCount = 7
-        let seatInputCount = 3
         let numRows = 128
         let numSeatsPerRow = 8
 
         let getRowCodes (boardingPass:string) =
-            boardingPass.ToCharArray()
-            |> Seq.take(rowInputCount)
+            boardingPass
+            |> Seq.filter(fun c -> c = 'F' || c = 'B' )
             |> Seq.toList
             
         let getSeatCodes (boardingPass:string) =
-            boardingPass.ToCharArray()
-            |> Seq.rev
-            |> Seq.take(seatInputCount)
-            |> Seq.rev
+            boardingPass
+            |> Seq.filter(fun c -> c = 'L' || c = 'R' )
             |> Seq.toList
                 
         [<Fact>]
