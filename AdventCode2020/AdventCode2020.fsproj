@@ -13,6 +13,7 @@
         <Compile Include="ParsingTests.fs" />
         <Compile Include="BoardingPassTests.fs" />
         <Compile Include="CustomsTests.fs" />
+        <Compile Include="BagTests.fs" />
         <Compile Include="Program.fs" />
         <Content Include="day1\input.txt" />
         <None Include="day1\part1Andpart2.fsx" />
@@ -24,6 +25,8 @@
         <Content Include="day4\input.txt" />
         <Content Include="day5\input.txt" />
         <Content Include="day6\input.txt" />
+        <None Include="day6\part2.fsx" />
+        <Content Include="Day7\input.txt" />
     </ItemGroup>
 
     <ItemGroup>

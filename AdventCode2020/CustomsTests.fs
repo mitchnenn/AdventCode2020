@@ -1,5 +1,6 @@
 namespace AdventCode2020
 
+open System
 open System.IO
 open Xunit
 open Xunit.Abstractions
@@ -83,3 +84,35 @@ module CustomsTests =
             let sum = sumYesQuestionsForAllGroups allGroups
             output.WriteLine($"{sum}")
             sum |> should equal 6249
+        
+        let split (delimiter:string) (input:string) =
+            input.Split(delimiter, StringSplitOptions.RemoveEmptyEntries)
+                
+        [<Fact>]
+        let ``Sum yes votes read all text`` () =
+            let input = File.ReadAllText(path)
+            let groupDelimiter = Environment.NewLine + Environment.NewLine
+            let groups = split groupDelimiter input 
+            let sum = groups
+                      |> Seq.map(fun g -> g
+                                          |> Seq.distinct
+                                          |> Seq.except ['\r';'\n']
+                                          |> Seq.length)
+                      |> Seq.sum
+            output.WriteLine(sprintf "%d" sum)
+            Assert.Equal(6249, sum)
+
+        [<Fact>]
+        let ``Sum all yes votes by each person`` () =
+            let input = File.ReadAllText(path)
+            let groupDelimiter = Environment.NewLine + Environment.NewLine
+            let groups = split groupDelimiter input 
+            let sum = groups
+                      |> Seq.map (fun g -> g
+                                           |> split Environment.NewLine
+                                           |> Seq.map Set.ofSeq
+                                           |> Set.intersectMany
+                                           |> Seq.length)
+                      |> Seq.sum
+            output.WriteLine(sprintf "%d" sum)
+            Assert.Equal(3103, sum)
