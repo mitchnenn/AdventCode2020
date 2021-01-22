@@ -9,7 +9,6 @@ open FsUnit.Xunit
 
 type Instruction = {op:string; arg:int}
 type InstructionRegex = Regex< @"^(?<Op>.*)\s(?<Arg>.*)$" >
-type Execution = {order:int; instr:Instruction; acc:int}
 
 module GameTests =
     type GamesTestsType(output:ITestOutputHelper) =
@@ -41,19 +40,21 @@ module GameTests =
                 currentIndex + 1
         
         let execute (instructions:Instruction list) =
+            let instrCount = instructions |> List.length
             let rec loop instrIndex executed acc =
                 match instrIndex with
-                | index when index < 0 || index >= (instructions |> List.length) ->
-                    (executed |> List.rev, acc)
-                | index when index >= 0 ->
+                | index when index < 0 || index > instrCount ->
+                    failwith (sprintf "index out of range: %i" index)
+                | index when index = instrCount ->
+                    output.WriteLine("done")
+                    executed |> List.rev, acc 
+                | index ->
                     let currentInstruction = instructions.[index]
-                    let newAcc = calcAcc currentInstruction acc
-                    let nextIndex = getNextIndex currentInstruction index
-                    if executed |> List.contains nextIndex then
-                        output.WriteLine("Infinite loop detected.")
-                        (executed |> List.rev, acc)
-                    else
-                        loop nextIndex (index::executed) newAcc
+                    match getNextIndex currentInstruction index with
+                    | next when executed |> List.contains next ->
+                        output.WriteLine("Infinite loop detected")
+                        executed |> List.rev, acc
+                    | next -> loop next (index::executed) (calcAcc currentInstruction acc)
             loop 0 [] 0
         
         [<Fact>]
@@ -65,7 +66,7 @@ module GameTests =
             output.WriteLine(sprintf "%A" (fst program))
             output.WriteLine(sprintf "%i" (snd program))
             snd program |> should equal 5
-
+        
         let path = Path.Combine($@"{__SOURCE_DIRECTORY__}", "day8", "input.txt")
         let input = File.ReadLines(path)
 
