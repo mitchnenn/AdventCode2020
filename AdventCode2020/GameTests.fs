@@ -9,6 +9,8 @@ open FsUnit.Xunit
 
 type Instruction = {op:string; arg:int}
 type InstructionRegex = Regex< @"^(?<Op>.*)\s(?<Arg>.*)$" >
+type ProgramInstruction = {lineNum:int; instr:Instruction}
+type Program = {lines:ProgramInstruction list}
 
 module GameTests =
     type GamesTestsType(output:ITestOutputHelper) =
@@ -44,28 +46,53 @@ module GameTests =
             let rec loop instrIndex executed acc =
                 match instrIndex with
                 | index when index < 0 || index > instrCount ->
-                    failwith (sprintf "index out of range: %i" index)
+                    executed |> List.rev, -1
                 | index when index = instrCount ->
-                    output.WriteLine("done")
                     executed |> List.rev, acc 
                 | index ->
                     let currentInstruction = instructions.[index]
                     match getNextIndex currentInstruction index with
                     | next when executed |> List.contains next ->
-                        output.WriteLine("Infinite loop detected")
-                        executed |> List.rev, acc
+                        executed |> List.rev, -1
                     | next -> loop next (index::executed) (calcAcc currentInstruction acc)
             loop 0 [] 0
+        
+        let createProgramListing (instructions:Instruction list) =
+            seq {
+                for l in [1..(instructions |> List.length)] do
+                    yield {lineNum=l; instr=instructions.[l-1]}
+            } |> Seq.toList
+        
+        let changeJmpInstruction (original:ProgramInstruction list) (jmpInstr:ProgramInstruction) =
+            let nop = {op="nop"; arg=jmpInstr.instr.arg}
+            let nopInstr = {lineNum=jmpInstr.lineNum; instr=nop}
+            original
+            |> List.map (fun line -> if line.lineNum = jmpInstr.lineNum then nopInstr else line)
+        
+        let createProgramJmpVariants (original:Program) : Program list =
+            let allJumpLines = original.lines
+                               |> Seq.where (fun l -> l.instr.op = "jmp")
+                               |> Seq.toList
+            allJumpLines
+            |> List.map (changeJmpInstruction original.lines)
+            |> List.map (fun li -> {lines=li})
+        
+        let executeAProgram (program:Program) =
+            let instructions = program.lines |> List.map(fun line -> line.instr)
+            let result = execute instructions
+            snd result
         
         [<Fact>]
         let ``Execute example test`` () =
             let instructions = example.Split(Environment.NewLine)
                                |> Seq.map parseInstruction
                                |> List.ofSeq
-            let program = execute instructions
-            output.WriteLine(sprintf "%A" (fst program))
-            output.WriteLine(sprintf "%i" (snd program))
-            snd program |> should equal 5
+            let program = {lines=createProgramListing instructions}
+            let variantPrograms = createProgramJmpVariants program
+            let result = variantPrograms |> List.map (executeAProgram)
+            let answer = result |> Seq.where (fun i -> i <> -1) |> Seq.head
+            output.WriteLine(sprintf "%i" answer)
+            answer |> should equal 8
         
         let path = Path.Combine($@"{__SOURCE_DIRECTORY__}", "day8", "input.txt")
         let input = File.ReadLines(path)
@@ -75,7 +102,9 @@ module GameTests =
             let instructions = input
                                |> Seq.map parseInstruction
                                |> List.ofSeq
-            let program = execute instructions
-            output.WriteLine(sprintf "%A" (fst program))
-            output.WriteLine(sprintf "%i" (snd program))
-            snd program |> should equal 1801
+            let program = {lines=createProgramListing instructions}
+            let variantPrograms = createProgramJmpVariants program
+            let result = variantPrograms |> List.map (executeAProgram)
+            let answer = result |> Seq.where (fun i -> i <> -1) |> Seq.head
+            output.WriteLine(sprintf "%i" answer)
+            answer |> should equal 2060
