@@ -15,6 +15,7 @@
         <Compile Include="CustomsTests.fs" />
         <Compile Include="BagTests.fs" />
         <Compile Include="GameTests.fs" />
+        <Compile Include="DecypherXmasTests.fs" />
         <Compile Include="Program.fs" />
         <Content Include="day1\input.txt" />
         <None Include="day1\part1Andpart2.fsx" />
@@ -29,6 +30,7 @@
         <None Include="day6\part2.fsx" />
         <Content Include="Day7\input.txt" />
         <Content Include="Day8\input.txt" />
+        <Content Include="Day9\input.txt" />
     </ItemGroup>
 
     <ItemGroup>
